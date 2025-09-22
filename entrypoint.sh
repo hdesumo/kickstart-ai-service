@@ -14,5 +14,6 @@ else
   echo "✅ Modèle mistral déjà présent"
 fi
 
-# Rester actif
-wait -n
+# Garder le conteneur en vie sans bloquer le shell avec wait -n
+echo "⏳ Ollama prêt, en attente..."
+tail -f /dev/null
