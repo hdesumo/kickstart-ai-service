@@ -1,11 +1,10 @@
-# Utilise l'image officielle Ollama
 FROM ollama/ollama:latest
 
-# Télécharge le modèle Mistral au moment de la build
-RUN ollama pull mistral
-
-# Expose l'API Ollama par défaut
+# Expose l'API Ollama
 EXPOSE 11434
 
-# Démarre le service Ollama
-CMD ["ollama", "serve"]
+# Script d'entrée qui démarre Ollama + télécharge mistral si absent
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+CMD ["/entrypoint.sh"]
